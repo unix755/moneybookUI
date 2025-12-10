@@ -4,7 +4,6 @@ on:
 #  push:
 #    branches:
 #      - main
-#      - angular
 #    paths-ignore:
 #      - '.github/**'
 #      - '.git**'
@@ -30,12 +29,16 @@ jobs:
         with:
           node-version: 'latest'
 
+      - name: setup go
+        uses: actions/setup-go@main
+        with:
+          go-version: 'stable'
+
       - name: processing
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          # building and compressing
-          npm run build
+          npm run dist
           tar -zcvf "./moneybookUI.tar.gz" -C "dist" $(ls -A dist)
 
           # delete all releases and their tags

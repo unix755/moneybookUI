@@ -37,9 +37,6 @@ function RouteComponent() {
     ]
 
     const rowSelection: TableProps<ACCOUNT>["rowSelection"] = {
-        onChange: (selectedRowKeys: React.Key[], selectedRows: ACCOUNT[]) => {
-            console.log(`selectedRowKeys: ${selectedRowKeys}`, "selectedRows: ", selectedRows)
-        },
         getCheckboxProps: (record: ACCOUNT) => ({
             disabled: record.name === "Disabled User",
             name: record.name,
@@ -89,8 +86,8 @@ function RouteComponent() {
                     </Button>
                 </Flex>
             </Flex>
-            <Table columns={columns} dataSource={readAccountsQuery.data} rowSelection={rowSelection}>
-
+            <Table columns={columns} dataSource={readAccountsQuery.data} rowSelection={rowSelection}
+                   rowKey={(record) => record.id}>
             </Table>
         </Flex>
     )
