@@ -4,12 +4,11 @@
   "description": "",
   "main": "src/main.ts",
   "scripts": {
-    "init": "npx -y pnpm install",
-    "update": "npx -y pnpm update",
-    "dev": "ng serve --configuration=development --host 127.0.0.1",
+    "init": "bun install || npx -y bun install",
+    "update": "bun update || npx -y bun update",
     "start": "ng serve --configuration=production --host 127.0.0.1",
-    "dist": "ng build",
-    "build": "node build"
+    "dev": "ng serve --configuration=development --host 127.0.0.1",
+    "build": "bun build.js || node build.js"
   },
   "dependencies": {
     "@angular/animations": "^18.2.14",

@@ -1,37 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/node,linux,macos,windows,visualstudio,jetbrains+all,visualstudiocode,angular
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,linux,macos,windows,visualstudio,jetbrains+all,visualstudiocode,angular
-
-### Angular ###
-## Angular ##
-# compiled output
-dist/
-tmp/
-app/**/*.js
-app/**/*.js.map
-
-# dependencies
-node_modules/
-bower_components/
-
-# IDEs and editors
-.idea/
-
-# misc
-.sass-cache/
-connect.lock/
-coverage/
-libpeerconnection.log/
-npm-debug.log
-testem.log
-typings/
-.angular/
-
-# e2e
-e2e/*.js
-e2e/*.map
-
-# System Files
-.DS_Store/
+# Created by https://www.toptal.com/developers/gitignore/api/jetbrains+all,visualstudio,visualstudiocode,node,windows,macos,linux
+# Edit at https://www.toptal.com/developers/gitignore?templates=jetbrains+all,visualstudio,visualstudiocode,node,windows,macos,linux
 
 ### JetBrains+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -211,6 +179,7 @@ bower_components
 build/Release
 
 # Dependency directories
+node_modules/
 jspm_packages/
 
 # Snowpack dependency directory (https://snowpack.dev/)
@@ -516,6 +485,7 @@ nCrunchTemp_*
 AutoTest.Net/
 
 # Web workbench (sass)
+.sass-cache/
 
 # Installshield output folder
 [Ee]xpress/
@@ -739,7 +709,10 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/node,linux,macos,windows,visualstudio,jetbrains+all,visualstudiocode,angular
+# End of https://www.toptal.com/developers/gitignore/api/jetbrains+all,visualstudio,visualstudiocode,node,windows,macos,linux
 
+.angular
+src/prisma
 package-lock.json
 pnpm-lock.yaml
+bun.lock

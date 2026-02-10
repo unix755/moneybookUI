@@ -1,10 +1,10 @@
-const child_process = require("child_process")
-const fs = require("fs")
+import child_process from "child_process"
+import fs from "fs"
 
 function run(command) {
     console.log("command: " + command)
     const result = child_process.execSync(command)
-    console.log(result.toString("utf8"))
+    console.log(result.toString())
 }
 
 function writeFile(filePath, content) {
@@ -31,10 +31,9 @@ function rm(path) {
     }
 }
 
-
 function build() {
-    run("npx -y pnpm install")
-    run("npx ng build")
+    run("npx -y bun install")
+    run("ng build")
 }
 
 build()
