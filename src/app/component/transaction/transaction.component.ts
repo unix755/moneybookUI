@@ -136,7 +136,7 @@ export class TransactionComponent implements OnInit {
 
     async deleteData(selectedIds: Set<string>) {
         this.isLoading = true
-        await this.transactionService.deleteTransactions(selectedIds)
+        await this.transactionService.deleteTransaction(selectedIds)
             .then(async () => await this.readData())
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
             .finally(() => this.isLoading = false)
@@ -144,7 +144,7 @@ export class TransactionComponent implements OnInit {
 
     async readData() {
         this.isLoading = true
-        await this.transactionService.readTransactions()
+        await this.transactionService.readTransaction()
             .then(ds => this.data = [...ds].map(d => {
                 d.datetime = new Date(Date.parse(d.datetime as unknown as string))
                 return d

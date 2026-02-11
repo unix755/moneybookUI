@@ -69,17 +69,17 @@ export class TransactionSearchComponent implements OnInit {
 
     // 生命周期
     async ngOnInit() {
-        await this.productService.readProducts()
+        await this.productService.readProduct()
             .then(ds => this.products = [...ds])
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
             .finally(() => this.isLoading = false)
 
-        await this.typeService.readTypes()
+        await this.typeService.readType()
             .then(ds => this.types = [...ds])
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
             .finally(() => this.isLoading = false)
 
-        await this.accountService.readAccounts()
+        await this.accountService.readAccount()
             .then(ds => this.accounts = [...ds])
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
             .finally(() => this.isLoading = false)
@@ -151,7 +151,7 @@ export class TransactionSearchComponent implements OnInit {
     async submitButton() {
         this.data = []
         this.bindAmount = 0
-        await this.transactionService.readTransactionsWithConditions(undefined, this.bindKeyword, this.bindProducts?.map(p => p.id), this.bindTypes?.map(t => t.id), this.bindAccounts?.map(a => a.id), this.bindDatetime[0]?.toString(), this?.bindDatetime[1]?.toString(), this.bindStatus?.map(s => s.value))
+        await this.transactionService.readTransactionBasedOnCondition(undefined, this.bindKeyword, this.bindProducts?.map(p => p.id), this.bindTypes?.map(t => t.id), this.bindAccounts?.map(a => a.id), this.bindDatetime[0]?.toString(), this?.bindDatetime[1]?.toString(), this.bindStatus?.map(s => s.value))
             .then(data => {
                 this.data = data
                 // 统计金额
@@ -192,7 +192,7 @@ export class TransactionSearchComponent implements OnInit {
 
     async deleteData(selectedIds: Set<string>) {
         this.isLoading = true
-        await this.transactionService.deleteTransactions(selectedIds)
+        await this.transactionService.deleteTransaction(selectedIds)
             .then(async () => await this.readData())
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
             .finally(() => this.isLoading = false)
@@ -200,7 +200,7 @@ export class TransactionSearchComponent implements OnInit {
 
     async readData() {
         this.isLoading = true
-        await this.transactionService.readTransactions()
+        await this.transactionService.readTransaction()
             .then(ds => this.data = [...ds].map(d => {
                 d.datetime = new Date(Date.parse(d.datetime as unknown as string))
                 return d
@@ -211,7 +211,7 @@ export class TransactionSearchComponent implements OnInit {
 
     async updateDataStatus(status: string) {
         this.isLoading = true
-        await this.transactionService.patchTransactionsStatus(Array.from(this.selectedIds), status)
+        await this.transactionService.patchTransactionStatus(Array.from(this.selectedIds), status)
             .then(data => {
                 if (data.count != undefined && data.count != 0) {
                     this.data.forEach((d, i, a) => {

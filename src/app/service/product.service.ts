@@ -7,7 +7,6 @@ import {environment} from "../app.component"
 @Injectable()
 export class ProductService {
     url1 = new URL("/product", environment.server).toString()
-    url2 = new URL("/products", environment.server).toString()
 
     constructor(private http: HttpClient) {
     }
@@ -24,15 +23,15 @@ export class ProductService {
             .catch(error => Promise.reject(error))
     }
 
-    async deleteProducts(ids: Set<string>) {
+    async deleteProduct(ids: Set<string>) {
         return await lastValueFrom(this.http.delete<{ count: number }>
-        (this.url2, {params: {"ids": Array.from(ids)}}).pipe(retry(3)))
+        (this.url1, {params: {"ids": Array.from(ids)}}).pipe(retry(3)))
             .then(resp => resp)
             .catch(error => Promise.reject(error))
     }
 
-    async readProducts() {
-        return await lastValueFrom(this.http.get<PRODUCT[]>(this.url2).pipe(retry(3)))
+    async readProduct() {
+        return await lastValueFrom(this.http.get<PRODUCT[]>(this.url1).pipe(retry(3)))
             .then(as => as)
             .catch(error => Promise.reject(error))
     }

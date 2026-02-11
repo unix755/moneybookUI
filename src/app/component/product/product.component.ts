@@ -135,7 +135,7 @@ export class ProductComponent implements OnInit {
 
     async deleteData(selectedIds: Set<string>) {
         this.isLoading = true
-        await this.productService.deleteProducts(selectedIds)
+        await this.productService.deleteProduct(selectedIds)
             .then(async () => await this.readData())
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
             .finally(() => this.isLoading = false)
@@ -143,7 +143,7 @@ export class ProductComponent implements OnInit {
 
     async readData() {
         this.isLoading = true
-        await this.productService.readProducts()
+        await this.productService.readProduct()
             .then(ds => this.data = [...ds])
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
             .finally(() => this.isLoading = false)

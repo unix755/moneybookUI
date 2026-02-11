@@ -7,9 +7,8 @@ import {environment} from "../app.component"
 @Injectable()
 export class TransactionService {
     url1 = new URL("/transaction", environment.server).toString()
-    url2 = new URL("/transactions", environment.server).toString()
-    url3 = new URL("/transactions/status", environment.server).toString()
-    url4 = new URL("/transactions/conditions", environment.server).toString()
+    url2 = new URL("/transactions/status", environment.server).toString()
+    url3 = new URL("/transactions/conditions", environment.server).toString()
 
     constructor(private http: HttpClient) {
     }
@@ -26,29 +25,22 @@ export class TransactionService {
             .catch(error => Promise.reject(error))
     }
 
-    async deleteTransactions(ids: Set<string>) {
+    async deleteTransaction(ids: Set<string>) {
         return await lastValueFrom(this.http.delete<{ count: number }>
-        (this.url2, {params: {"ids": Array.from(ids)}}).pipe(retry(3)))
+        (this.url1, {params: {"ids": Array.from(ids)}}).pipe(retry(3)))
             .then(resp => resp)
             .catch(error => Promise.reject(error))
     }
 
-    async readTransactions() {
-        return await lastValueFrom(this.http.get<TRANSACTION_OUTPUT[]>(this.url2).pipe(retry(3)))
+    async readTransaction() {
+        return await lastValueFrom(this.http.get<TRANSACTION_OUTPUT[]>(this.url1).pipe(retry(3)))
             .then(as => as)
             .catch(error => Promise.reject(error))
     }
 
-    async patchTransactionsStatus(ids: string[], status: string) {
-        return await lastValueFrom(this.http.patch<{ count: number }>
-        (this.url3, {ids: ids, status: status}).pipe(retry(3)))
-            .then(as => as)
-            .catch(error => Promise.reject(error))
-    }
-
-    async readTransactionsWithConditions(ids?: string[], title?: string, productIds?: string[], typeIds?: string[], accountIds?: string[], startTime?: string, endTime?: string, status?: string[]) {
+    async readTransactionBasedOnCondition(ids?: string[], title?: string, productIds?: string[], typeIds?: string[], accountIds?: string[], startTime?: string, endTime?: string, status?: string[]) {
         return await lastValueFrom(this.http.get<TRANSACTION_OUTPUT[]>
-        (this.url4, {
+        (this.url3, {
             params: JSON.parse(JSON.stringify({
                 "ids": ids,
                 "title": title,
@@ -61,6 +53,13 @@ export class TransactionService {
             }).toString())
         })
             .pipe(retry(3)))
+            .then(as => as)
+            .catch(error => Promise.reject(error))
+    }
+
+    async patchTransactionStatus(ids: string[], status: string) {
+        return await lastValueFrom(this.http.patch<{ count: number }>
+        (this.url2, {ids: ids, status: status}).pipe(retry(3)))
             .then(as => as)
             .catch(error => Promise.reject(error))
     }

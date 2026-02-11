@@ -58,15 +58,15 @@ export class TransactionEditorComponent implements OnInit {
 
     // 生命周期
     async ngOnInit() {
-        await this.productService.readProducts()
+        await this.productService.readProduct()
             .then(ds => this.products = [...ds])
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
 
-        await this.typeService.readTypes()
+        await this.typeService.readType()
             .then(ds => this.types = [...ds])
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
 
-        await this.accountService.readAccounts()
+        await this.accountService.readAccount()
             .then(ds => this.accounts = [...ds])
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
     }

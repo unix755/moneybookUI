@@ -134,7 +134,7 @@ export class TypeComponent implements OnInit {
 
     async deleteData(selectedIds: Set<string>) {
         this.isLoading = true
-        await this.typeService.deleteTypes(selectedIds)
+        await this.typeService.deleteType(selectedIds)
             .then(async () => await this.readData())
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
             .finally(() => this.isLoading = false)
@@ -142,7 +142,7 @@ export class TypeComponent implements OnInit {
 
     async readData() {
         this.isLoading = true
-        await this.typeService.readTypes()
+        await this.typeService.readType()
             .then(ds => this.data = [...ds])
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
             .finally(() => this.isLoading = false)

@@ -7,7 +7,6 @@ import {environment} from "../app.component"
 @Injectable()
 export class TypeService {
     url1 = new URL("/type", environment.server).toString()
-    url2 = new URL("/types", environment.server).toString()
 
     constructor(private http: HttpClient) {
     }
@@ -24,15 +23,15 @@ export class TypeService {
             .catch(error => Promise.reject(error))
     }
 
-    async deleteTypes(ids: Set<string>) {
+    async deleteType(ids: Set<string>) {
         return await lastValueFrom(this.http.delete<{ count: number }>
-        (this.url2, {params: {"ids": Array.from(ids)}}).pipe(retry(3)))
+        (this.url1, {params: {"ids": Array.from(ids)}}).pipe(retry(3)))
             .then(resp => resp)
             .catch(error => Promise.reject(error))
     }
 
-    async readTypes() {
-        return await lastValueFrom(this.http.get<TYPE[]>(this.url2).pipe(retry(3)))
+    async readType() {
+        return await lastValueFrom(this.http.get<TYPE[]>(this.url1).pipe(retry(3)))
             .then(as => as)
             .catch(error => Promise.reject(error))
     }

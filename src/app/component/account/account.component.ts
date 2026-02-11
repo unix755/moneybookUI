@@ -135,7 +135,7 @@ export class AccountComponent implements OnInit {
 
     async deleteData(selectedIds: Set<string>) {
         this.isLoading = true
-        await this.accountService.deleteAccounts(selectedIds)
+        await this.accountService.deleteAccount(selectedIds)
             .then(async () => await this.readData())
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
             .finally(() => this.isLoading = false)
@@ -143,7 +143,7 @@ export class AccountComponent implements OnInit {
 
     async readData() {
         this.isLoading = true
-        await this.accountService.readAccounts()
+        await this.accountService.readAccount()
             .then(ds => this.data = [...ds])
             .catch((e: HttpErrorResponse) => this.message.error(e.message))
             .finally(() => this.isLoading = false)
