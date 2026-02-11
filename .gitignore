@@ -748,3 +748,4 @@ src/routeTree.gen.ts
 # lock
 package-lock.json
 pnpm-lock.yaml
+bun.lock

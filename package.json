@@ -1,29 +1,26 @@
 {
   "name": "moneybookui",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
-    "init": "npx -y pnpm install",
-    "update": "npx -y pnpm update",
-    "start": "vite --host 127.0.0.1 --mode production",
-    "dev": "vite --host 127.0.0.1 --mode development",
-    "dist": "tsc --build && vite build",
-    "clean": "tsc --build --clean"
+    "init": "bun install || npx -y bun install",
+    "update": "bun update || npx -y bun update",
+    "start": "bunx --bun vite --host 127.0.0.1",
+    "dist": " bunx --bun vite build"
   },
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
-    "@tanstack/react-query": "^5.90.20",
-    "@tanstack/react-router": "^1.157.16",
-    "antd": "^6.2.2",
+    "@tanstack/react-query": "^5.90.21",
+    "@tanstack/react-router": "^1.159.5",
+    "antd": "^6.3.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@tanstack/router-plugin": "^1.157.16",
-    "@types/node": "^25.0.10",
-    "@types/react": "^19.2.9",
+    "@tanstack/router-plugin": "^1.159.5",
+    "@types/node": "^25.2.3",
+    "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react-swc": "^4.2.2",
-    "typescript": "^5.9.3",
+    "@vitejs/plugin-react-swc": "^4.2.3",
     "vite": "^7.3.1"
   }
 }

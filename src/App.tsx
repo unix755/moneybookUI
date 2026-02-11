@@ -1,6 +1,6 @@
 import {createHashHistory, createRouter, RouterProvider} from "@tanstack/react-router"
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
-import {routeTree} from "./routeTree.gen.ts"
+import {routeTree} from "./routeTree.gen"
 import "./App.css"
 
 const router = createRouter({routeTree, history: createHashHistory()})

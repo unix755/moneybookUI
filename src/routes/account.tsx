@@ -2,7 +2,7 @@ import {useState} from "react"
 import {createFileRoute} from "@tanstack/react-router"
 import {useQuery} from "@tanstack/react-query"
 import {Badge, Button, Flex, Table, type TableColumnsType, type TableProps} from "antd"
-import {API_readAccounts} from "../apis/account.ts"
+import {API_readAccount} from "../apis/account.ts"
 import type {ACCOUNT} from "../types/account.ts"
 
 export const Route = createFileRoute("/account")({
@@ -45,7 +45,7 @@ function RouteComponent() {
 
     const readAccountsQuery = useQuery({
         queryKey: ["readAccounts"],
-        queryFn: API_readAccounts
+        queryFn: API_readAccount
     })
 
     function handleClickSelectAllButton() {
