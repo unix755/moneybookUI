@@ -7,8 +7,8 @@ import {environment} from "../app.component"
 @Injectable()
 export class TransactionService {
     url1 = new URL("/transaction", environment.server).toString()
-    url2 = new URL("/transactions/status", environment.server).toString()
-    url3 = new URL("/transactions/conditions", environment.server).toString()
+    url2 = new URL("/transaction/status", environment.server).toString()
+    url3 = new URL("/transaction/condition", environment.server).toString()
 
     constructor(private http: HttpClient) {
     }
