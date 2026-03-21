@@ -25,9 +25,9 @@ export class TransactionService {
             .catch(error => Promise.reject(error))
     }
 
-    async deleteTransaction(ids: Set<string>) {
+    async deleteTransaction(id: Set<string>) {
         return await lastValueFrom(this.http.delete<{ count: number }>
-        (this.url1, {params: {"ids": Array.from(ids)}}).pipe(retry(3)))
+        (this.url1, {params: {"id": Array.from(id)}}).pipe(retry(3)))
             .then(resp => resp)
             .catch(error => Promise.reject(error))
     }
