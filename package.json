@@ -29,6 +29,8 @@
     "@angular-devkit/build-angular": "^18.2.21",
     "@angular/cli": "^18.2.21",
     "@angular/compiler-cli": "^18.2.14",
-    "@ctrl/tinycolor": "^4.2.0"
+    "@ctrl/tinycolor": "^4.2.0",
+    "typescript": "~5.5.4",
+    "@types/node": "~20.10.8"
   }
 }
